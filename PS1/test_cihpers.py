@@ -2,6 +2,7 @@ import unittest
 
 from ciphers.caesar import Caesar
 from ciphers.rail_fence import RailFence
+from ciphers.viegnere import Viegnere
 
 
 class TestCipherMethods(unittest.TestCase):
@@ -11,6 +12,7 @@ class TestCipherMethods(unittest.TestCase):
         caesar = Caesar()
         encoded_phrase = caesar.encode(self.phrase)
         decoded_phrase = caesar.decode(encoded_phrase)
+        print('{0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
 
         self.assertEqual(decoded_phrase, self.phrase)
 
@@ -18,10 +20,19 @@ class TestCipherMethods(unittest.TestCase):
         rail_fence = RailFence()
         encoded_phrase = rail_fence.encode(self.phrase)
         decoded_phrase = rail_fence.decode(encoded_phrase)
-        print(encoded_phrase)
-        
+        print('{0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
 
         self.assertEqual(decoded_phrase, self.phrase)
+
+    def test_viegnere(self):
+        key = 'BREAKBREAKBR'
+        viegnere = Viegnere()
+        encoded_phrase = viegnere.encode(self.phrase, key)
+        decoded_phrase = viegnere.decode(encoded_phrase, key)
+        print('{0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
+
+        self.assertEqual(decoded_phrase, self.phrase)
+
 
 if __name__ == '__main__':
     unittest.main()

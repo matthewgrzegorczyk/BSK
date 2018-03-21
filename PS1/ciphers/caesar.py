@@ -7,7 +7,7 @@ class Caesar:
     alphabet_size = last_char_code - first_char_code + 1
 
     def __init__(self, shift=3):
-        self.shift=shift
+        self.shift = shift
     
     def encode(self, plaintext: str) -> str:
         encoded = ''

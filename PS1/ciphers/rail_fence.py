@@ -4,7 +4,7 @@ class RailFence:
     """
 
     def __init__(self, key=3):
-        self.key=key
+        self.key = key
 
     def encode(self, plaintext: str) -> str:
         cipher_levels = []
@@ -16,7 +16,7 @@ class RailFence:
                 direction = -1
             elif level == 0:
                 direction = 1
-            
+
             try:
                 cipher_levels[level].append(letter)
             except IndexError:
@@ -29,7 +29,6 @@ class RailFence:
             cipher = cipher + ''.join(cipher_level)
 
         return cipher
-
 
     def decode(self, encoded_text: str) -> str:
         decoded = ''
