@@ -3,6 +3,7 @@ import unittest
 from ciphers.caesar import Caesar
 from ciphers.rail_fence import RailFence
 from ciphers.viegnere import Viegnere
+from ciphers.matrix import Matrix
 
 
 class TestCipherMethods(unittest.TestCase):
@@ -33,6 +34,14 @@ class TestCipherMethods(unittest.TestCase):
 
         self.assertEqual(decoded_phrase, self.phrase)
 
+    def test_matrix(self):
+        key = '3-4-1-5-2'
+        matrix = Matrix(key)
+        encoded_phrase = matrix.encode(self.phrase)
+        decoded_phrase = matrix.decode(encoded_phrase)
+        print('{0} => {1} => {2}'.format(self.phrase, matrix.clean_from_special(encoded_phrase), decoded_phrase))
+
+        self.assertEqual(decoded_phrase, self.phrase)
 
 if __name__ == '__main__':
     unittest.main()
