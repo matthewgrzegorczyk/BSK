@@ -26,7 +26,7 @@ class TestCipherMethods(unittest.TestCase):
         self.assertEqual(decoded_phrase, self.phrase)
 
     def test_viegnere(self):
-        key = 'BREAKBREAKBR'
+        key = 'BREAK'
         viegnere = Viegnere()
         encoded_phrase = viegnere.encode(self.phrase, key)
         decoded_phrase = viegnere.decode(encoded_phrase, key)

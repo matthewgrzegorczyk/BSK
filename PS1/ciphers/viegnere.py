@@ -2,10 +2,12 @@ class Viegnere:
     """
     Viegnere cipher
     """
+
     def encode(self, plaintext: str, key: str) -> str:
         encoded = ''
         # Make the text uppercase.
         plaintext = plaintext.upper()
+        key = self.prepare_key(plaintext, key)
         key_index = 0
         key_len = len(key)
 
@@ -26,6 +28,7 @@ class Viegnere:
         decoded = ''
         # Make the text uppercase.
         encoded_text = encoded_text.upper()
+        key = self.prepare_key(encoded_text, key)
         key_index = 0
         key_len = len(key)
 
@@ -47,3 +50,12 @@ class Viegnere:
 
     def alpha_num_to_ascii(self, number):
         return chr(number + 65)
+
+    def prepare_key(self, plaintext: str, key: str) -> str:
+        key_len = len(key)
+        plaintext_len = len(plaintext)
+
+        if key_len >= plaintext_len:
+            return key
+        else:
+            return (key * (plaintext_len // key_len + 1))[:plaintext_len]
