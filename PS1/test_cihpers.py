@@ -13,7 +13,7 @@ class TestCipherMethods(unittest.TestCase):
         caesar = Caesar()
         encoded_phrase = caesar.encode(self.phrase)
         decoded_phrase = caesar.decode(encoded_phrase)
-        print('{0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
+        print('Caesar: {0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
 
         self.assertEqual(decoded_phrase, self.phrase)
 
@@ -21,7 +21,7 @@ class TestCipherMethods(unittest.TestCase):
         rail_fence = RailFence()
         encoded_phrase = rail_fence.encode(self.phrase)
         decoded_phrase = rail_fence.decode(encoded_phrase)
-        print('{0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
+        print('Rail Fence: {0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
 
         self.assertEqual(decoded_phrase, self.phrase)
 
@@ -30,7 +30,7 @@ class TestCipherMethods(unittest.TestCase):
         viegnere = Viegnere()
         encoded_phrase = viegnere.encode(self.phrase, key)
         decoded_phrase = viegnere.decode(encoded_phrase, key)
-        print('{0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
+        print('Viegnere: {0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
 
         self.assertEqual(decoded_phrase, self.phrase)
 
@@ -39,9 +39,10 @@ class TestCipherMethods(unittest.TestCase):
         matrix = Matrix(key)
         encoded_phrase = matrix.encode(self.phrase)
         decoded_phrase = matrix.decode(encoded_phrase)
-        print('{0} => {1} => {2}'.format(self.phrase, matrix.clean_from_special(encoded_phrase), decoded_phrase))
+        print('Matrix: {0} => {1} => {2}'.format(self.phrase, matrix.clean_from_special(encoded_phrase), decoded_phrase))
 
         self.assertEqual(decoded_phrase, self.phrase)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -16,7 +16,6 @@ class Caesar:
 
         for letter in plaintext:
             shifted_letter_code = ((ord(letter) - self.first_char_code + self.shift) % self.alphabet_size) + self.first_char_code
-            print("{} ({}) => {} ({})".format(letter, ord(letter), chr(shifted_letter_code), shifted_letter_code))
             encoded = encoded + chr(shifted_letter_code)
 
         return encoded
