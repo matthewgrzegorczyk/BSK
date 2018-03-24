@@ -14,7 +14,7 @@ class RailFence:
 
     def encode(self, plaintext: str) -> str:
         zigzag = self.build_zigzag(plaintext)
-        
+        self.zigzag = zigzag
         cipher = ''
         for row in zigzag:
             cipher = cipher + ''.join(row)
@@ -60,6 +60,11 @@ class RailFence:
                     direction = 1
 
                 if top_row == level and letter_list:
+<<<<<<< Updated upstream
+=======
+                    print('Level: {level} Direction: {direction} top_row: {top_row} x: {x} letter: {letter}'.format(
+                        level=level, direction=direction, top_row=top_row, x=selected_list, letter=letter))
+>>>>>>> Stashed changes
                     try:
                         zigzag[selected_list].append(letter_list.pop(0))
                     except IndexError:
@@ -71,30 +76,41 @@ class RailFence:
                         selected_list = selected_list - 1
 
                 level = level + direction
-        
+
         return zigzag
 
     def rebuild_zigzag2(self, encoded_text):
         helper = 0
-        index = 0
         direction = 1
-        list_direction = 1
         letter_list = list(encoded_text)
+        text_length = len(encoded_text)
         zigzag = []
-        for x in range(self.key):
-            for letter in encoded_text:
-                if x == helper:
+
+        for index in range(self.key):
+            helper = 0
+            for i, letter in enumerate(encoded_text):
+                if not letter_list:
+                    break
+
+                if index == helper and i in range(index, text_length + 1):
                     try:
+<<<<<<< Updated upstream
                         zigzag[x].append(letter_list.pop(0))
+=======
+                        zigzag[index]
+                        zigzag[index].append(letter_list.pop(0))
+>>>>>>> Stashed changes
                     except IndexError:
                         zigzag.append([])
-                        zigzag[x].append(letter_list.pop(0))
+                        zigzag[index].append(letter_list.pop(0))
+
                 if helper >= self.key - 1:
                     direction = -1
                 elif helper <= 0:
                     direction = 1
 
                 helper += direction
+
         return zigzag
 
     def read_zigzag(self, zigzag: List, ) -> str:
@@ -113,4 +129,8 @@ class RailFence:
 
             level = level + direction
 
+<<<<<<< Updated upstream
         return output
+=======
+        return output
+>>>>>>> Stashed changes
