@@ -6,40 +6,48 @@ from ciphers.matrix import Matrix
 
 
 def do_option(option: int, mode_option: int, text: str, key: str):
+    result = ''
+
     if option == 1:
         rail_fence = RailFence(int(key))
 
         if mode_option == 1:
-            print("Zaszyfrowany tekst: {}".format(rail_fence.encode(text)))
+            result = rail_fence.encode(text)
         else:
-            print("Odszyfrowany tekst: {}".format(rail_fence.decode(text)))
+            result = rail_fence.decode(text)
 
-    if option == 2:
+    elif option == 2:
         viegnere = Viegnere()
 
         if mode_option == 1:
-            print("Zaszyfrowany tekst: {}".format(viegnere.encode(text, key)))
+            result = viegnere.encode(text, key)
         else:
-            print("Odszyfrowany tekst: {}".format(viegnere.decode(text, key)))
+            result = viegnere.decode(text, key)
 
-    if option == 3:
+    elif option == 3:
         matrix = Matrix(key)
 
         if mode_option == 1:
-            print("Zaszyfrowany tekst: {}".format(matrix.encode(text)))
+            result = matrix.encode(text)
         else:
-            print("Odszyfrowany tekst: {}".format(matrix.decode(text)))
+            result = matrix.decode(text)
 
-    if option == 4:
+    elif option == 4:
         caesar = Caesar(int(key))
 
         if mode_option == 1:
-            print("Zaszyfrowany tekst: {}".format(caesar.encode(text)))
+            result = caesar.encode(text)
         else:
-            print("Odszyfrowany tekst: {}".format(caesar.decode(text)))
+            result = caesar.decode(text)
 
-    if option > 4:
+    else:
         print("Zla opcja!")
+
+    if result != '':
+        if mode_option == 1:
+            print("Zaszyfrowany tekst: {}".format(result))
+        else:
+            print("Odszyfrowany tekst: {}".format(result))
 
     return
 
