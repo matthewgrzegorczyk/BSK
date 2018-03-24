@@ -18,10 +18,10 @@ class Matrix:
         for row_index in range(0, rows):
             for key_index, key_value in self.key_dict.items():
                 pos = int(key_value) + (row_index * self.period) - 1
-                if pos >= plaintext_len:
-                    encoded += '%'
-                else:
+                try:
                     encoded += plaintext[pos]
+                except IndexError:
+                    continue
 
         return encoded
 
@@ -35,7 +35,10 @@ class Matrix:
         for row_index in range(0, rows):
             for key_index, key_value in inversed_key.items():
                 pos = int(key_value) + (row_index * self.period)
-                decoded += encoded[pos]
+                try:
+                    decoded += encoded[pos]
+                except IndexError:
+                    decoded += '%'
 
         return self.clean_from_special(decoded)
 

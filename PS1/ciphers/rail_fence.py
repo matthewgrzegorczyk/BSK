@@ -60,9 +60,7 @@ class RailFence:
                     direction = 1
 
                 if top_row == level and letter_list:
-                    print('Level: {level} Direction: {direction} top_row: {top_row} x: {x} letter: {letter}'.format(level=level, direction=direction, top_row=top_row, x=selected_list, letter=letter))
                     try:
-                        zigzag[selected_list]
                         zigzag[selected_list].append(letter_list.pop(0))
                     except IndexError:
                         zigzag.append([])
@@ -87,7 +85,6 @@ class RailFence:
             for letter in encoded_text:
                 if x == helper:
                     try:
-                        zigzag[x]
                         zigzag[x].append(letter_list.pop(0))
                     except IndexError:
                         zigzag.append([])
@@ -117,15 +114,3 @@ class RailFence:
             level = level + direction
 
         return output
-
-if __name__ == '__main__':
-    rf = RailFence(3)
-    encoded = rf.encode('CRYPTOGRAPHY')
-    print(encoded)
-    # zigzag = rf.rebuild_zigzag(encoded)
-    # print(zigzag)
-    # print(rf.read_zigzag(zigzag))
-
-    zigzag2 = rf.rebuild_zigzag2(encoded)
-    print(zigzag2)
-    print(rf.read_zigzag(zigzag2))
