@@ -23,6 +23,7 @@ class TestCipherMethods(unittest.TestCase):
         decoded_phrase = rail_fence.decode(encoded_phrase)
         print('Rail Fence: {0} => {1} => {2}'.format(self.phrase, encoded_phrase, decoded_phrase))
 
+        self.assertEqual(encoded_phrase, 'CTARPORPYYGH')
         self.assertEqual(decoded_phrase, self.phrase)
 
     def test_viegnere(self):
