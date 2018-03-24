@@ -60,11 +60,6 @@ class RailFence:
                     direction = 1
 
                 if top_row == level and letter_list:
-<<<<<<< Updated upstream
-=======
-                    print('Level: {level} Direction: {direction} top_row: {top_row} x: {x} letter: {letter}'.format(
-                        level=level, direction=direction, top_row=top_row, x=selected_list, letter=letter))
->>>>>>> Stashed changes
                     try:
                         zigzag[selected_list].append(letter_list.pop(0))
                     except IndexError:
@@ -94,12 +89,8 @@ class RailFence:
 
                 if index == helper and i in range(index, text_length + 1):
                     try:
-<<<<<<< Updated upstream
-                        zigzag[x].append(letter_list.pop(0))
-=======
                         zigzag[index]
                         zigzag[index].append(letter_list.pop(0))
->>>>>>> Stashed changes
                     except IndexError:
                         zigzag.append([])
                         zigzag[index].append(letter_list.pop(0))
@@ -129,8 +120,4 @@ class RailFence:
 
             level = level + direction
 
-<<<<<<< Updated upstream
         return output
-=======
-        return output
->>>>>>> Stashed changes
