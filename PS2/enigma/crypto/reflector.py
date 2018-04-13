@@ -1,6 +1,7 @@
 import string
 from random import shuffle
 
+
 class Reflector:
 
     def __init__(self):
@@ -11,7 +12,7 @@ class Reflector:
         shuffle(mixed_letters)
 
         alphabet = {}
-        for char, index in string.ascii_uppercase:
+        for index, char in enumerate(string.ascii_uppercase):
             alphabet[char] = mixed_letters[index]
 
         return alphabet
