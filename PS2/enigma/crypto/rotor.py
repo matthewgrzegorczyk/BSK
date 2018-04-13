@@ -27,8 +27,8 @@ class Rotor:
         return alphabet
 
     def rotate(self):
-        new_position = (string.ascii_uppercase.index(self.position) + 1) % len(string.ascii_uppercase)
-        self.position = string.ascii_uppercase[new_position]
+        new_position = (self.alphabet.index(self.position) + 1) % len(self.alphabet)
+        self.position = self.alphabet[new_position]
 
     def is_full_rotate(self):
         return self.position == self.basic_position
