@@ -30,9 +30,8 @@ def test_rotors():
         idx = 0
         for rotor in rotors:
             letter = rotor.get_letter_by_input_letter_index(input_letter)
-            idx -= string.ascii_uppercase.index(letter) 
-            input_letter = rotor.get_letter_by_alphabet_index(idx)
-
+            idx = string.ascii_uppercase.index(letter) - rotor.shift
+            input_letter = string.ascii_uppercase[idx]
             print(letter, idx, input_letter)
 
     return rotors
