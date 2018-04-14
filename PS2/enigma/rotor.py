@@ -14,26 +14,6 @@ class Rotor:
         index = string.ascii_uppercase.index(letter_in)
         self.alphabet[index] = letter_out
 
-    def resolve_letter(self, letter):
-        letter = letter.upper()
-        index = string.ascii_uppercase.index(letter)
-
-        return self.alphabet[index]
-
-    def index(self, idx):
-        return self.shift + idx % len(self.alphabet)
-
-    def get_letter_by_index(self, idx):
-        index = self.index(idx)
-
-        return self.alphabet[index]
-
-    def get_letter_by_base_letter(self, letter):
-        letter = letter.upper()
-        idx = string.ascii_uppercase.index(letter)
-
-        return self.alphabet[idx]
-
     def randomize_alphabet(self):
         self.alphabet = list(string.ascii_uppercase)
         shuffle(self.alphabet)
@@ -42,6 +22,28 @@ class Rotor:
         if (len(alphabet) == 26):
             self.alphabet = list(alphabet)
 
+    def index(self, idx):
+        return (self.shift + idx) % len(self.alphabet)
+
+    def get_letter_by_input_letter_index(self, letter):
+        """Gets letter by input letter index, where letter is char in range A-z"""
+        letter = letter.upper()
+
+        return self.get_letter_by_alphabet_index(string.ascii_uppercase.index(letter))
+
+    def get_letter_by_alphabet_index(self, idx):
+        """Gets letter by base alphabet index, where idx is number in range(0, 25)"""
+        index = self.index(idx)
+
+        return self.alphabet[index]
+
+    def get_letter_by_base_letter(self, letter):
+        """Gets alphabet letter by base letter."""
+        letter = letter.upper()
+        idx = string.ascii_uppercase.index(letter)
+
+        return self.alphabet[idx]
+
     def rotate(self, direction=1):
         # if direction == 1:
         #     self.alphabet = self.alphabet[-1:] + self.alphabet[:-1]
@@ -49,3 +51,9 @@ class Rotor:
         #     self.alphabet = self.alphabet
 
         self.shift += direction
+
+    def set_shift_by_letter(self, letter):
+        letter = letter.upper()
+        idx = string.ascii_uppercase.index(letter)
+
+        self.shift = idx
