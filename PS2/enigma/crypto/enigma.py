@@ -1,9 +1,11 @@
 from .rotor import Rotor
 from .reflector import Reflector
+from .alphabet import Alphabet
 
 
 class Enigma:
     rotors = []
+    alphabet_class = Alphabet()
 
     def __init__(self, key, rotor_count):
         self.key = key
@@ -13,7 +15,11 @@ class Enigma:
 
     def add_rotors(self):
         for i in range(self.rotor_count):
-            self.rotors.append(Rotor(self.key[i]))
+            self.rotors.append(Rotor(
+                self.alphabet_class.get_alphabet()
+                    .index(self.key[i])
+                )
+            )
         
     def crypt(self, text):
         crypted_text = ''
@@ -23,7 +29,8 @@ class Enigma:
 
             # Rotors in order (to reflector)
             for index in range(self.rotor_count):
-                crypted_char = self.rotors[index].resolve_letter(crypted_char)
+                self.rotors[index].rotate()
+                crypted_char = self.rotors[index].get_letter_by_input_letter_index(crypted_char)
 
             # Reflector
             crypted_char = self.reflector.resolve_letter(crypted_char)

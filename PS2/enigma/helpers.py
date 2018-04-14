@@ -1,5 +1,6 @@
 import string
-from rotor import Rotor
+from .crypto.rotor import Rotor
+from .crypto.alphabet import Alphabet
 
 def read_rotors():
     rotors = []
@@ -16,6 +17,7 @@ def read_rotors():
     return rotors
 
 def test_rotors():
+    alphabet = Alphabet().get_alphabet()
     rotors = read_rotors()
     key = 'FLG'
 
@@ -30,8 +32,8 @@ def test_rotors():
         idx = 0
         for rotor in rotors:
             letter = rotor.get_letter_by_input_letter_index(input_letter)
-            idx = string.ascii_uppercase.index(letter) - rotor.shift
-            input_letter = string.ascii_uppercase[idx]
+            idx = alphabet.index(letter) - rotor.shift
+            input_letter = alphabet[idx]
             print(letter, idx, input_letter)
 
     return rotors

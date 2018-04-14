@@ -22,7 +22,7 @@ def main():
 
         option = int(input("Opcja: "))
 
-        if option == 3:
+        if option == 0:
             break
 
         rotor_count = int(input('Liczba rotorów: '))
