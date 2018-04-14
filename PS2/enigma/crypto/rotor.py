@@ -10,16 +10,14 @@ class Rotor:
 
     def __init__(self, shift=0):
         self.shift = shift
-        self.alphabet = list(self.alphabet_class.get_alphabet())
+        self.alphabet = list(self.alphabet_class.alphabet)
 
     def add_letter_mapping(self, letter_in, letter_out):
-        letter_in = letter_in.upper()
-        letter_out = letter_out.upper()
-        index = self.alphabet_class.get_alphabet().index(letter_in)
+        index = self.alphabet_class.alphabet.index(letter_in)
         self.alphabet[index] = letter_out
 
     def randomize_alphabet(self):
-        self.alphabet = list(self.alphabet_class.get_alphabet())
+        self.alphabet = list(self.alphabet_class.alphabet)
         shuffle(self.alphabet)
 
     def set_alphabet(self, alphabet):
@@ -31,20 +29,17 @@ class Rotor:
 
     def get_letter_by_input_letter_index(self, letter):
         """Gets letter by input letter index, where letter is char in range 0x00 - 0xFF"""
-        letter = letter.upper()
-
-        return self.get_letter_by_alphabet_index(self.alphabet_class.get_alphabet().index(letter))
+        return self.get_letter_by_alphabet_index(self.alphabet_class.alphabet.index(letter))
 
     def get_letter_by_alphabet_index(self, idx):
-        """Gets letter by base alphabet index, where idx is number in range(0, 25)"""
+        """Gets letter by base alphabet index, where idx is number in range(0, 255)"""
         index = self.index(idx)
 
         return self.alphabet[index]
 
     def get_letter_by_base_letter(self, letter):
         """Gets alphabet letter by base letter."""
-        letter = letter.upper()
-        idx = self.alphabet_class.get_alphabet().index(letter)
+        idx = self.alphabet_class.alphabet.index(letter)
 
         return self.alphabet[idx]
 
@@ -57,7 +52,6 @@ class Rotor:
         self.shift += direction
 
     def set_shift_by_letter(self, letter):
-        letter = letter.upper()
-        idx = self.alphabet_class.get_alphabet().index(letter)
+        idx = self.alphabet_class.alphabet.index(letter)
 
         self.shift = idx

@@ -1,3 +1,5 @@
+import string
+
 ALPHABET_COUNT = 256
 
 
@@ -15,5 +17,5 @@ class Alphabet:
 
         return alphabet
 
-    def get_alphabet(self):
-        return self.alphabet
+    def set_ascii_alphabet(self):
+        self.alphabet = string.ascii_uppercase

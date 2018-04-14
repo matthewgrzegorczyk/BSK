@@ -16,8 +16,7 @@ class Enigma:
     def add_rotors(self):
         for i in range(self.rotor_count):
             self.rotors.append(Rotor(
-                self.alphabet_class.get_alphabet()
-                    .index(self.key[i])
+                self.alphabet_class.alphabet.index(self.key[i])
                 )
             )
         
@@ -37,7 +36,7 @@ class Enigma:
 
             # Rotors in reversed order (from reflector)
             # for rev_index in reversed(range(self.rotor_count)):
-                # crypted_char = self.rotors[rev_index].resolve_letter_backwards(crypted_char)
+               # crypted_char = self.rotors[rev_index].resolve_letter_backwards(crypted_char)
 
             crypted_text += crypted_char
 

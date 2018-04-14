@@ -1,6 +1,6 @@
 import string
-from .crypto.rotor import Rotor
-from .crypto.alphabet import Alphabet
+from crypto.rotor import Rotor
+from crypto.alphabet import Alphabet
 
 def read_rotors():
     rotors = []
@@ -17,7 +17,7 @@ def read_rotors():
     return rotors
 
 def test_rotors():
-    alphabet = Alphabet().get_alphabet()
+    alphabet = Alphabet().alphabet
     rotors = read_rotors()
     key = 'FLG'
 
@@ -39,3 +39,4 @@ def test_rotors():
     return rotors
 
 
+test_rotors()
