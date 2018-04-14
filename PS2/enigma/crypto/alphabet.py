@@ -1,12 +1,12 @@
 import string
 
-ALPHABET_COUNT = 256
+ALPHABET_COUNT = 26
 
 
 class Alphabet:
 
     def __init__(self):
-        self.alphabet = self.generate_alphabet()
+        self.alphabet = string.ascii_uppercase
 
     @staticmethod
     def generate_alphabet(length=ALPHABET_COUNT):

@@ -7,6 +7,7 @@ from .alphabet import ALPHABET_COUNT
 class Rotor:
     alphabet = []
     alphabet_class = Alphabet()
+    rotate_count = 0
 
     def __init__(self, shift=0):
         self.shift = shift
@@ -29,6 +30,7 @@ class Rotor:
 
     def get_letter_by_input_letter_index(self, letter):
         """Gets letter by input letter index, where letter is char in range 0x00 - 0xFF"""
+        letter = letter.upper()
         return self.get_letter_by_alphabet_index(self.alphabet_class.alphabet.index(letter))
 
     def get_letter_by_alphabet_index(self, idx):
@@ -39,6 +41,7 @@ class Rotor:
 
     def get_letter_by_base_letter(self, letter):
         """Gets alphabet letter by base letter."""
+        letter = letter.upper()
         idx = self.alphabet_class.alphabet.index(letter)
 
         return self.alphabet[idx]
@@ -50,8 +53,17 @@ class Rotor:
         #     self.alphabet = self.alphabet
 
         self.shift += direction
+        self.rotate_count += 1
 
     def set_shift_by_letter(self, letter):
         idx = self.alphabet_class.alphabet.index(letter)
 
         self.shift = idx
+
+    def is_full_cycle(self):
+        return self.rotate_count >= ALPHABET_COUNT
+
+    def swap_alphabets(self):
+        a = self.alphabet
+        self.alphabet = self.alphabet_class.alphabet
+        self.alphabet_class.alphabet = a

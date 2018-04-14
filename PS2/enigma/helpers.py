@@ -1,6 +1,7 @@
 import string
 from crypto.rotor import Rotor
 from crypto.alphabet import Alphabet
+from crypto.reflector import Reflector
 
 def read_rotors():
     rotors = []
@@ -9,7 +10,7 @@ def read_rotors():
 
         for line in lines:
             line = line.strip() # Remove any whitespace
-            
+
             rotor = Rotor()
             rotor.set_alphabet(line)
             rotors.append(rotor)
@@ -19,6 +20,7 @@ def read_rotors():
 def test_rotors():
     alphabet = Alphabet().alphabet
     rotors = read_rotors()
+    reflector = Reflector()
     key = 'FLG'
 
     i = 0
@@ -29,7 +31,17 @@ def test_rotors():
     input_string = 's'
     for input_letter in input_string:
         rotors[0].rotate()
-        idx = 0
+        letter = ''
+
+        for rotor in rotors:
+            letter = rotor.get_letter_by_input_letter_index(input_letter)
+            idx = alphabet.index(letter) - rotor.shift
+            input_letter = alphabet[idx]
+            print(letter, idx, input_letter)
+
+        letter = reflector.resolve_letter(letter)
+        print(letter, input_letter)
+
         for rotor in rotors:
             letter = rotor.get_letter_by_input_letter_index(input_letter)
             idx = alphabet.index(letter) - rotor.shift

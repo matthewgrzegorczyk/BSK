@@ -6,11 +6,24 @@ def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def pause_console():
+    os.system('pause' if os.name == 'nt' else "read -rsp $'Press any key to continue...\n' -n 1 key")
+
+
 def do_option(option, rotor_count, key):
     enigma = Enigma(key, rotor_count)
+    if option == 1:
+        text = input('Podaj tekst do zaszyfrowania: ')
+        crypted = enigma.crypt(text)
+        print('Odszyfrowany tekst: {}'.format(crypted))
 
-    encrypted = enigma.crypt('ALFA')
-    print('Tekst zaszyfrowany: {}'.format(encrypted))
+    elif option == 2:
+        text = input('Podaj tekst do odszyfrowania')
+        crypted = enigma.crypt(text)
+        print('Zaszyfrowany tekst: {}'.format(crypted))
+
+    else:
+        print('Zła opcja!')
 
 
 def main():
@@ -29,6 +42,7 @@ def main():
         key = input('Klucz: ')
 
         do_option(option, rotor_count, key)
+        pause_console()
 
 
 if __name__ == "__main__":
