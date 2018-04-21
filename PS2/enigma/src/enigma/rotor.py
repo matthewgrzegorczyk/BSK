@@ -41,9 +41,8 @@ class Rotor:
         elif direction == -1:
             shift = self.shift - getattr(prev, 'shift', 0)
             if isinstance(prev, Reflector):
-                print('Reflector -> ', letter)
                 i = (self.base_alphabet.index(letter) + shift) % len(self.base_alphabet)
-                print(self.base_alphabet[i])
+                return self.base_alphabet[i]
             elif isinstance(prev, Rotor):
-                print('Rotor')
-            return self.base_alphabet[shift]
+                i = (prev.alphabet.index(letter) + self.shift - prev_shift) % len(self.base_alphabet)
+                return self.base_alphabet[i]

@@ -22,10 +22,14 @@ class Enigma:
     def set_key(self, key):
         self.key = key
 
-        for letter in reversed(self.key):
-            rotor = Rotor(self)
-            rotor.set_shift_by_letter(letter)
-            self.add_rotor(rotor)
+        for i, letter in enumerate(reversed(self.key)):
+            try:
+                rotor = self.rotors[i]
+                rotor.set_shift_by_letter(letter)
+            except IndexError:
+                rotor = Rotor(self)
+                rotor.set_shift_by_letter(letter)
+                self.add_rotor(rotor)
 
     def set_alphabet(self, alphabet):
         self.alphabet = list(alphabet)
@@ -55,6 +59,7 @@ class Enigma:
                     # Flip direction, as the signal got reflected on the Reflector
                     direction = -1
                 prev = item
-            output += letter
+
+            output += self.alphabet[(prev.alphabet.index(letter) - prev.shift) % len(self.alphabet)]
 
         return output
