@@ -17,7 +17,7 @@ class LFSR:
             input_val ^= int(self.seed[tap - 1])
 
         self.seed.appendleft(str(input_val))
-        return int(''.join(self.seed), 10)
+        return int(''.join(self.seed), 2)
 
     def get_input_bit(self):
         return self.seed[0]

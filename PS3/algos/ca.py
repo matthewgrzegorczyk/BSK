@@ -29,10 +29,10 @@ class CA:
         return decoded_text
 
 
-ca_enc = CA([7, 5, 3, 1], '101100101')
-ca_dec = CA([7, 5, 3, 1], '101100101')
+#ca_enc = CA([7, 5, 3, 1], '101100101')
+#ca_dec = CA([7, 5, 3, 1], '101100101')
 
-encoded = ca_enc.encrypt('ALFA_ROMEO')
-decoded = ca_dec.decrypt(encoded)
-print('Encoded: {}'.format(encoded))
-print('Decrypted: {}'.format(decoded))
+#encoded = ca_enc.encrypt('ALFA_ROMEO')
+#decoded = ca_dec.decrypt(encoded)
+#print('Encoded: {}'.format(encoded))
+#print('Decrypted: {}'.format(decoded))
