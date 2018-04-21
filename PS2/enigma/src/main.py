@@ -1,3 +1,5 @@
+import string
+
 from enigma.enigma import Enigma
 from enigma.reflector import Reflector
 
@@ -17,8 +19,28 @@ def example():
 
 
 def read_binary_files():
-    file1 = open('files/test.bin')
+    files = [
+        'enigma/files/test.bin',
+        'enigma/files/test2.bin',
+        'enigma/files/test3.bin'
+    ]
+
+    for file_name in files:
+        file = open(file_name, 'rb')
+        lines = file.readlines()
+        print(file_name)
+        for line in lines:
+            output = ''
+            for code in line:
+                letter = chr(code)
+
+                if letter in string.ascii_letters:
+                    output += letter
+            print(output)
+        print()
+
 
 
 if __name__ == '__main__':
     example()
+    # read_binary_files()

@@ -1,3 +1,5 @@
+from .reflector import Reflector
+
 class Rotor:
     shift = 0
     rotate_count = 0
@@ -18,18 +20,30 @@ class Rotor:
     def get_index(self, index):
         return (index + self.shift) % len(self.base_alphabet)
 
+    def get_shifted_base_letter(self, letter, prev):
+        prev_shift = getattr(prev, 'shift', 0)
+        index = (self.get_index(self.base_alphabet.index(letter)) - prev_shift)
+
+        return self.base_alphabet[index]
+
     def rotate(self):
         self.shift += 1
+        # print("Let's rotate: ", self)
         self.rotate_count = (self.rotate_count + 1) % len(self.base_alphabet)
 
         return self.rotate_count == 0
 
-    def encode(self, letter, direction=1, prev_shift=0):
-        print(letter, direction, prev_shift)
+    def encode(self, letter, direction=1, prev=None):
+        prev_shift = getattr(prev, 'shift', 0)
         if direction == 1:
             index = self.get_index(self.base_alphabet.index(letter) - prev_shift)
             return self.alphabet[index]
         elif direction == -1:
-            index = self.get_index(self.base_alphabet.index(letter) + prev_shift)
-            # print('prev_shift', prev_shift, 'index', index, 'shift', self.shift
-            return self.base_alphabet[index]
+            shift = self.shift - getattr(prev, 'shift', 0)
+            if isinstance(prev, Reflector):
+                print('Reflector -> ', letter)
+                i = (self.base_alphabet.index(letter) + shift) % len(self.base_alphabet)
+                print(self.base_alphabet[i])
+            elif isinstance(prev, Rotor):
+                print('Rotor')
+            return self.base_alphabet[shift]

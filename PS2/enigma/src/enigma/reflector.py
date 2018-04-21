@@ -16,6 +16,7 @@ class Reflector:
     def get_index(self, index):
         return (index + self.shift) % len(self.base_alphabet)
 
-    def encode(self, letter, prev_shift):
+    def encode(self, letter, prev):
+        prev_shift = getattr(prev, 'shift', 0)
         index = self.get_index(self.base_alphabet.index(letter) - prev_shift)
         return self.alphabet[index]
