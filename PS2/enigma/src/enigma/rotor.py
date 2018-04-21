@@ -22,10 +22,14 @@ class Rotor:
         self.shift += 1
         self.rotate_count = (self.rotate_count + 1) % len(self.base_alphabet)
 
-    def encode(self, letter, direction=1):
+        return self.rotate_count == 0
+
+    def encode(self, letter, direction=1, prev_shift=0):
+        print(letter, direction, prev_shift)
         if direction == 1:
-            index = self.get_index(self.base_alphabet.index(letter))
+            index = self.get_index(self.base_alphabet.index(letter) - prev_shift)
             return self.alphabet[index]
         elif direction == -1:
-            index = self.get_index(self.alphabet.index(letter))
+            index = self.get_index(self.base_alphabet.index(letter) + prev_shift)
+            # print('prev_shift', prev_shift, 'index', index, 'shift', self.shift
             return self.base_alphabet[index]
