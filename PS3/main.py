@@ -1,8 +1,8 @@
 import os
 
-from PS3.algos.lfsr import LFSR
-from PS3.algos.ssc import SSC
-from PS3.algos.ca import CA
+from algos.lfsr import LFSR
+from algos.ssc import SSC
+from algos.ca import CA
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -52,7 +52,6 @@ def do_option(option):
 
 def main():
     while True:
-        clear_console()
         print("1. LFSR")
         print("2. Synchronous Stream Cipher")
         print("3. Ciphertext Autokey")
